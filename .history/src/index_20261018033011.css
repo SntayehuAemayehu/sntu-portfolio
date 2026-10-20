@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-slate-900 dark:bg-dark dark:text-slate-100 transition-colors duration-300;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100 dark:bg-card;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-primary to-accent rounded-full;
+}
+
+.section {
+  @apply py-24 px-6 max-w-7xl mx-auto;
+}
+
+.gradient-text {
+  @apply bg-gradient-to-r from-primary via-purple-500 to-accent bg-clip-text text-transparent;
+}
+
+.glass {
+  @apply bg-white/70 dark:bg-card/70 backdrop-blur-xl border border-slate-200 dark:border-slate-800;
+}
+
+.btn-primary {
+  @apply px-8 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-semibold hover:shadow-[0_0_30px_rgba(99, 102, 241, 0.6)] transition-all duration-300 hover:-translate-y-1;
+}
+
+.btn-outline {
+  @apply px-8 py-3 rounded-full border-2 border-primary text-primary dark:text-accent dark:border-accent font-semibold hover:bg-primary hover:text-white dark:hover:bg-accent dark:hover:text-dark transition-all duration-300;
+}
+
+.card-hover {
+  @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_60px_-15px_rgba(99, 102, 241, 0.4)];
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
