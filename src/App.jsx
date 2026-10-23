@@ -20,7 +20,9 @@ import FloatingContact from "./components/FloatingContact";
 import RecruiterMode from "./components/RecruiterMode";
 import TechMarquee from "./components/TechMarquee";
 import AIAssistant from "./components/AIAssistant";
-
+import TrustedBy from "./components/TrustedBy"; // NEW
+import ContextMenu from "./components/ContextMenu"; // NEW
+import CommandPalette from "./components/CommandPalette";
 export default function App() {
   const [dark, setDark] = useState(true);
   const [recruiterMode, setRecruiterMode] = useState(false);
@@ -37,12 +39,15 @@ export default function App() {
 
   return (
     <div className="app-wrapper noise-overlay">
+      <ContextMenu /> {/* NEW: Custom Right-Click Menu */}
+      <CommandPalette />
       <ScrollProgress />
       <Cursor />
       <Navbar dark={dark} setDark={setDark} setRecruiterMode={setRecruiterMode} />
       
       <main>
         <Hero />
+        <TrustedBy /> {/* NEW: Tech Marquee */}
         <TechMarquee />
         <Stats />
         <About />

@@ -7,7 +7,7 @@ export const testimonials = [
     avatar: "AS",
   },
   {
-    name: "Dr. Getachew T.",
+    name: "M.r Demeke.mola.",
     role: "Department of Software Engineering, Mekdela Amba University",
     quote:
       "One of the most dedicated students in the department. Strong grasp of full-stack development, mobile apps, and networking — and always willing to help classmates debug their projects.",

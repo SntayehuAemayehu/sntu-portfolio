@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaCopy, FaCheck } from "react-icons/fa";
 import { projects } from "../data/projects";
 
 const filters = ["All", "Web", "Mobile", "Networking", "Desktop"];
 
-// NEW: 3D Tilt Wrapper Component
 function TiltCard({ children }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -49,7 +48,15 @@ function TiltCard({ children }) {
 
 export default function Projects() {
   const [filter, setFilter] = useState("All");
+  const [copiedId, setCopiedId] = useState(null);
+
   const filtered = filter === "All" ? projects : projects.filter((p) => p.category === filter);
+
+  const handleCopy = (text, id) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   return (
     <section id="projects" className="section">
@@ -89,7 +96,6 @@ export default function Projects() {
               transition={{ delay: i * 0.1 }}
               className="glass rounded-2xl overflow-hidden group h-full flex flex-col relative"
             >
-              {/* Gradient blob on hover */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-accent/30 transition-all duration-500 z-0" />
               
               <div className="h-40 bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center text-5xl font-black gradient-text relative z-10">
@@ -115,7 +121,7 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-4 mt-auto">
+                <div className="flex gap-4 mt-auto items-center">
                   <a href={p.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-sm font-semibold hover:text-primary transition">
                     <FaGithub /> Code
                   </a>
@@ -124,6 +130,15 @@ export default function Projects() {
                       <FaExternalLinkAlt /> Live Demo
                     </a>
                   )}
+                  
+                  {/* Copy Button */}
+                  <button 
+                    onClick={() => handleCopy(p.github, p.id)}
+                    className="ml-auto text-slate-400 hover:text-accent transition text-sm flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-2 rounded-full"
+                    title="Copy GitHub Link"
+                  >
+                    {copiedId === p.id ? <FaCheck className="text-emerald-500" /> : <FaCopy />}
+                  </button>
                 </div>
               </div>
             </motion.article>

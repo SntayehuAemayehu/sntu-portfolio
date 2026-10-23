@@ -3,7 +3,7 @@ export const certificates = [
     title: "Cisco Certified Network Associate (CCNA / CNN)",
     issuer: "Cisco Networking Academy",
     year: "2025",
-        image: "/cert-cisco.jpg",
+        image: "/liberary.jpg",
 
     description:
       "Certified in computer networking fundamentals: OSI/TCP-IP models, routing & switching, subnetting, VLANs, network security basics, and Cisco IOS configuration.",
@@ -14,7 +14,7 @@ export const certificates = [
     title: "Internship Certificate — Full-Stack Development",
     issuer: "Mekdela Amba University × Aliyah Software Company",
     year: "Jan 2026",
-    image: "/cert-internship.jpg",
+    image: "/internship.jpg",
     description:
       "Successfully completed a 4-month internship (Sept 2025 – Jan 2026) at Aliyah Software Company, Bahirdar. Delivered a Clearance Management System (React + Django REST) with role-based access, JWT auth, and automated approval workflows.",
     icon: "FaBriefcase",

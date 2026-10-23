@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaSearch } from "react-icons/fa";
 import ThemeToggle from "./ThemeToggle";
-import { useLanguage } from "../context/LanguageContext";
 
 const links = [
   "Home", "About", "Skills", "Projects", "Services",
@@ -11,13 +10,18 @@ const links = [
 export default function Navbar({ dark, setDark, setRecruiterMode }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { lang, setLang } = useLanguage(); // Language hook
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Helper to trigger the Command Palette (Ctrl + K)
+  const triggerSearch = () => {
+    const event = new KeyboardEvent("keydown", { key: "k", ctrlKey: true });
+    window.dispatchEvent(event);
+  };
 
   return (
     <nav
@@ -26,7 +30,16 @@ export default function Navbar({ dark, setDark, setRecruiterMode }) {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6">
-        <a href="#home" className="text-2xl font-black gradient-text">SNTU.</a>
+        
+        {/* Logo with Small Photo */}
+        <a href="#home" className="flex items-center gap-2 group">
+          <img 
+            src="/profile.jpg" 
+            alt="Sntu" 
+            className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover object-top border-2 border-primary group-hover:scale-110 transition-transform duration-300" 
+          />
+          <span className="text-2xl font-black gradient-text hidden sm:block">SNTU.</span>
+        </a>
 
         <ul className="hidden lg:flex items-center gap-6">
           {links.map((l) => (
@@ -43,16 +56,14 @@ export default function Navbar({ dark, setDark, setRecruiterMode }) {
         </ul>
 
         <div className="flex items-center gap-3">
-          {/* Language Selector */}
-          <select 
-            value={lang} 
-            onChange={(e) => setLang(e.target.value)}
-            className="bg-transparent border border-slate-300 dark:border-slate-700 rounded-md px-2 py-1 text-sm font-bold focus:outline-none"
+          {/* Command Palette Search Button */}
+          <button 
+            onClick={triggerSearch}
+            className="hidden md:flex items-center gap-2 px-3 py-1.5 text-sm text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition"
           >
-            <option value="EN" className="text-black">🇬🇧 EN</option>
-            <option value="AM" className="text-black">🇪🇹 አማ</option>
-            <option value="OR" className="text-black">🇪🇹 OR</option>
-          </select>
+            <FaSearch />
+            <span className="text-xs font-mono">Ctrl K</span>
+          </button>
 
           <ThemeToggle dark={dark} setDark={setDark} />
           

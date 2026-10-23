@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaClock } from "react-icons/fa";
 
 const posts = [
   {
@@ -61,7 +61,12 @@ export default function Blog() {
               <span className="text-xs px-3 py-1 rounded-full bg-primary/10 dark:bg-primary/20 text-primary dark:text-accent font-bold">
                 {p.tag}
               </span>
-              <span className="text-xs font-mono text-slate-500 dark:text-slate-400">{p.date}</span>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-slate-500 font-mono flex items-center gap-1">
+                  <FaClock /> {Math.ceil(p.excerpt.split(' ').length / 30)} min read
+                </span>
+                <span className="text-xs font-mono text-slate-500 dark:text-slate-400">{p.date}</span>
+              </div>
             </div>
             <h3 className="text-lg font-bold mb-2 group-hover:text-primary dark:group-hover:text-accent transition">
               {p.title}
